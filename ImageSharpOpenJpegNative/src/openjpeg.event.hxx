@@ -17,8 +17,8 @@
 #ifndef _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_EVENT_H_
 #define _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_EVENT_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include "shared.h"
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
 
 IMAGESHARPOPENJPEG_EXPORT void openjpeg_openjp2_opj_set_info_handler(opj_codec_t * p_codec,
                                                      const opj_msg_callback p_function,

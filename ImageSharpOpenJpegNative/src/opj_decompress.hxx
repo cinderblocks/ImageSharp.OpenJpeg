@@ -17,9 +17,9 @@
 #ifndef _CPP_OPENJPEG_OPENJP2_OBJ_DECOMPRESS_H_
 #define _CPP_OPENJPEG_OPENJP2_OBJ_DECOMPRESS_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include "shared.h"
-#include <stdio.h>
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
+#include <cstdio>
 
 #ifdef _WIN32
 #include <windows.h>
@@ -85,7 +85,7 @@ IMAGESHARPOPENJPEG_EXPORT int32_t openjpeg_openjp2_infile_format(const char *fna
                                                  int32_t* format)
 {
     FILE *reader;
-    const char *s, *magic_s;
+    const char *magic_s;
     int ext_format, magic_format;
     unsigned char buf[12];
     OPJ_SIZE_T l_nb_read;

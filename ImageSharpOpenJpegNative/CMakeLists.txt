@@ -1,6 +1,6 @@
 # -*- cmake -*-
 
-project(ImageSharpOpenJpeg LANGUAGES C)
+project(ImageSharpOpenJpeg LANGUAGES CXX)
 
 include(CPack)
 include(ExternalProject)
@@ -48,25 +48,25 @@ endif(MSVC)
 
 # Collect our source files
 set(SOURCE_FILES
-    src/stdlib.c
-    #src/extensions.c
-    #src/openjpeg.c
-    #src/opj_decompress.c
+    src/stdlib.cxx
+    src/extensions.cxx
+    src/openjpeg.cxx
+    src/opj_decompress.cxx
     )
 
 set(HEADER_FILES
-    src/shared.h
-    src/stdlib.h
-    #src/extensions.h
-    #src/openjpeg.codec.compression.h
-    #src/openjpeg.codec.decompression.h
-    #src/openjpeg.constant.h
-    #src/openjpeg.h
-    #src/openjpeg.image.h
-    #src/openjpeg.mct.h
-    #src/openjpeg.stream.h
-    #src/openjpeg.thread.h
-    #src/opj_decompress.h
+    src/shared.hxx
+    src/stdlib.hxx
+    src/extensions.hxx
+    src/openjpeg.codec.compression.hxx
+    src/openjpeg.codec.decompression.hxx
+    src/openjpeg.constant.hxx
+    src/openjpeg.hxx
+    src/openjpeg.image.hxx
+    src/openjpeg.mct.hxx
+    src/openjpeg.stream.hxx
+    src/openjpeg.thread.hxx
+    src/opj_decompress.hxx
     )
 
 list(APPEND SOURCE_FILES ${HEADER_FILES})
@@ -83,13 +83,35 @@ target_include_directories(ImageSharpOpenJpeg
 		${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 generate_export_header(ImageSharpOpenJpeg
-                       EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/exports/ImageSharpOpenJpeg_Exports.h)
+                       EXPORT_FILE_NAME ${CMAKE_BINARY_DIR}/exports/ImageSharpOpenJpeg_Exports.hxx)
 
-ExternalProject_Add(external_openjpeg
+ExternalProject_Add(zlib
+    GIT_REPOSITORY https://github.com/madler/zlib.git
+    GIT_TAG v1.2.11
+    CMAKE_ARGS
+      -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+)
+
+ExternalProject_Add(openjpeg
 	GIT_REPOSITORY https://github.com/uclouvain/openjpeg
     GIT_TAG "v2.4.0"
-    GIT_SUBMODULES_RECURSE ON
-	PREFIX ${BUILD_DIR}/openjpeg)
+	CMAKE_ARGS
+      -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
+      -DCMAKE_DEBUG_POSTFIX:STRING=${LIB_DEBUG_SUFFIX}
+      -DBUILD_TESTING:BOOL=OFF
+      -DBUILD_SHARED_LIBS:BOOL=OFF
+      -DBUILD_STATIC_LIBS:BOOL=ON
+      -DBUILD_CODEC:BOOL=OFF
+      -DZLIB_ROOT:PATH=${CMAKE_INSTALL_PREFIX}
+    DEPENDS zlib
+)
+
+add_dependencies(ImageSharpOpenJpeg openjpeg)
+
+target_include_directories(ImageSharpOpenJpeg 
+    PUBLIC ${CMAKE_INSTALL_PREFIX}/include)
+target_link_directories(ImageSharpOpenJpeg PUBLIC ${CMAKE_INSTALL_PREFIX}/lib)
+target_link_libraries(ImageSharpOpenJpeg PUBLIC openjp2)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

@@ -1,0 +1,8 @@
+#include "openjpeg.hxx"
+#include "openjpeg.codec.compression.hxx"
+#include "openjpeg.codec.decompression.hxx"
+#include "openjpeg.event.hxx"
+#include "openjpeg.image.hxx"
+#include "openjpeg.mct.hxx"
+#include "openjpeg.stream.hxx"
+#include "openjpeg.thread.hxx"

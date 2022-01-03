@@ -14,21 +14,18 @@
  * limitations under the License.
  */
 
-#ifndef _ISOJ_STDLIB_H_
-#define _ISOJ_STDLIB_H_
+#ifndef _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_MCT_H_
+#define _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_MCT_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include <stdlib.h>
-#include <malloc.h>
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
 
-IMAGESHARPOPENJPEG_EXPORT void* stdlib_malloc(size_t size)
+IMAGESHARPOPENJPEG_EXPORT bool openjpeg_openjp2_opj_set_MCT(opj_cparameters_t* parameters,
+                                            float* pEncodingMatrix,
+                                            int32_t* p_dc_shift,
+                                            const uint32_t pNbComp)
 {
-    return malloc(size);
+    return ::opj_set_MCT(parameters, pEncodingMatrix, p_dc_shift, pNbComp);
 }
 
-IMAGESHARPOPENJPEG_EXPORT void stdlib_free(void *ptr)
-{
-    free(ptr);
-}
-
-#endif
+#endif // _CPP_OPENJPEG_OPENJP2_OPENJPEG_MCT_H_

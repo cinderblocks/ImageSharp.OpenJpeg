@@ -17,8 +17,8 @@
 #ifndef _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_STREAM_H_
 #define _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_STREAM_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include "shared.h"
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
 
 IMAGESHARPOPENJPEG_EXPORT void openjpeg_openjp2_opj_stream_destroy(opj_stream_t* p_stream)
 {

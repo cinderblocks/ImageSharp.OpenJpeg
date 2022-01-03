@@ -18,10 +18,10 @@
 #define _ISOJ_SHARED_H_
 
 #define OPJ_STATIC
-#include <openjpeg.h>
+#include <openjpeg-2.4/openjpeg.h>
 
-#include <stdint.h>
-#include <string.h>
+#include <cstdint>
+#include <cstring>
 
 #define ERR_OK                                                            0x00000000
 

@@ -17,9 +17,9 @@
 #ifndef _ISOJ_OPENJPEG_OPENJP2_EXTENSIONS_H_
 #define _ISOJ_OPENJPEG_OPENJP2_EXTENSIONS_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include "shared.h"
-#include "stdlib.h"
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
+#include <malloc.h>
 
 //////////////////////////////
 ///     bmp handling       ///
@@ -34,7 +34,7 @@ IMAGESHARPOPENJPEG_EXPORT int32_t openjpeg_openjp2_extensions_imagetobmp(opj_ima
 																		 uint32_t* out_p)
 {
     unsigned int compno, numcomps;
-    int w, h, fails;
+    int w, h, fails = 0;
     int line, row, curr, mask;
     int *ptr;
     unsigned char uc;

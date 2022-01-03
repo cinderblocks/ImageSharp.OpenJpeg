@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-#ifndef _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_THREAD_H_
-#define _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_THREAD_H_
+#ifndef _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_H_
+#define _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_H_
 
-#include "ImageSharpOpenJpeg_Exports.h"
-#include "shared.h"
+#include "ImageSharpOpenJpeg_Exports.hxx"
+#include "shared.hxx"
+#include <string>
 
-IMAGESHARPOPENJPEG_EXPORT const bool openjpeg_openjp2_opj_has_thread_support()
+IMAGESHARPOPENJPEG_EXPORT std::string* openjpeg_openjp2_opj_version()
 {
-    return ::opj_has_thread_support() == OPJ_TRUE;
+    const auto str = ::opj_version();
+    return new std::string(str);
 }
 
-IMAGESHARPOPENJPEG_EXPORT const int32_t openjpeg_openjp2_opj_get_num_cpus()
-{
-    return ::opj_get_num_cpus();
-}
-
-#endif // _CPP_OPENJPEG_OPENJP2_OPENJPEG_THREAD_H_
+#endif // _ISOJ_OPENJPEG_OPENJP2_OPENJPEG_H_
