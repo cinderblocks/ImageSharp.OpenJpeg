@@ -1,0 +1,8 @@
+#include "openjpeg.h"
+#include "openjpeg.codec.compression.h"
+#include "openjpeg.codec.decompression.h"
+#include "openjpeg.event.h"
+#include "openjpeg.image.h"
+#include "openjpeg.mct.h"
+#include "openjpeg.stream.h"
+#include "openjpeg.thread.h"
