@@ -19,7 +19,6 @@
 
 #include "ImageSharpOpenJpeg_Exports.hxx"
 #include "shared.hxx"
-#include <malloc.h>
 
 //////////////////////////////
 ///     bmp handling       ///

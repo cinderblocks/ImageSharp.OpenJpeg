@@ -19,7 +19,6 @@
 
 #include "ImageSharpOpenJpeg_Exports.hxx"
 #include <cstdlib>
-#include <malloc.h>
 
 IMAGESHARPOPENJPEG_EXPORT void* stdlib_malloc(size_t size)
 {

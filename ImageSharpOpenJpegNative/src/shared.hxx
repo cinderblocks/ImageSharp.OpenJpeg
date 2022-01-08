@@ -21,6 +21,7 @@
 #include <openjpeg-2.4/openjpeg.h>
 
 #include <cstdint>
+#include <cstdlib>
 #include <cstring>
 
 #define ERR_OK                                                            0x00000000
