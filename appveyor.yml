@@ -1,0 +1,28 @@
+init:
+  - ps: if ($env:APPVEYOR_REPO_TAG -eq "true") { $env:TAG_VERSION = "$env:APPVEYOR_REPO_TAG_NAME.$env:APPVEYOR_BUILD_NUMBER" } else { $env:TAG_VERSION = "v0.1.0.$env:APPVEYOR_BUILD_NUMBER-alpha" }
+  - ps: $env:TAG_VERSION = $env:TAG_VERSION -replace 'v',''
+  - ps: Write-Host "Setting version to '$env:TAG_VERSION'"
+  - ps: Update-AppveyorBuild -Version "$env:TAG_VERSION"
+
+environment:
+  matrix:
+  - job_name: Windows x64 Build
+    platform: x64
+    appveyor_build_worker_image: Visual Studio 2022
+    configuration: Release
+  - job_name: Windows x86 Build
+    platform: x86
+    appveyor_build_worker_image: Visual Studio 2022
+    configuration: Release
+  - job_name: Linux Build
+    platform: x64
+    appveyor_build_worker_image: Ubuntu
+    configuration: Release
+  - job_name: MacOS Build
+    platform: x64
+    appveyor_build_worker_image: macos-mojave
+    configuration: Release
+
+build_script:
+  - cmake .
+  - cmake --build . --config Release
