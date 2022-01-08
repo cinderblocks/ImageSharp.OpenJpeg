@@ -89,14 +89,14 @@ ExternalProject_Add(zlib
     GIT_REPOSITORY https://github.com/madler/zlib.git
     GIT_TAG v1.2.11
     CMAKE_ARGS
-      -DCMAKE_INSTALL_PREFIX:PATH=${LIBRARY_OUTPUT_DIRECTORY}/thirdparty
+      -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
 )
 
 ExternalProject_Add(openjpeg
 	GIT_REPOSITORY https://github.com/uclouvain/openjpeg
     GIT_TAG "v2.4.0"
 	CMAKE_ARGS
-      -DCMAKE_INSTALL_PREFIX:PATH=${LIBRARY_OUTPUT_DIRECTORY}/thirdparty
+      -DCMAKE_INSTALL_PREFIX:PATH=${CMAKE_INSTALL_PREFIX}
       -DCMAKE_DEBUG_POSTFIX:STRING=${LIB_DEBUG_SUFFIX}
       -DBUILD_TESTING:BOOL=OFF
       -DBUILD_SHARED_LIBS:BOOL=OFF
@@ -110,7 +110,7 @@ add_dependencies(ImageSharpOpenJpeg openjpeg)
 
 target_include_directories(ImageSharpOpenJpeg 
     PUBLIC ${CMAKE_INSTALL_PREFIX}/include)
-target_link_directories(ImageSharpOpenJpeg PUBLIC ${LIBRARY_OUTPUT_DIRECTORY}/thirdparty/lib)
+target_link_directories(ImageSharpOpenJpeg PUBLIC ${CMAKE_INSTALL_PREFIX}/lib)
 target_link_libraries(ImageSharpOpenJpeg PUBLIC openjp2)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
