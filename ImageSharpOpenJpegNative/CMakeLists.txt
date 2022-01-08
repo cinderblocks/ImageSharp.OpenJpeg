@@ -73,6 +73,7 @@ list(APPEND SOURCE_FILES ${HEADER_FILES})
 set_source_files_properties(${HEADER_FILES} PROPERTIES HEADER_FILE_ONLY TRUE)
 
 add_library(ImageSharpOpenJpeg SHARED ${SOURCE_FILES})
+set_property(TARGET ImageSharpOpenJpeg PROPERTY CXX_STANDARD 20)
 
 target_include_directories(ImageSharpOpenJpeg
 	PUBLIC
