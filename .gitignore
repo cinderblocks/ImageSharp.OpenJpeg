@@ -33,6 +33,7 @@
 
 # VS garbage
 .vs/
+*/obj/*
 
 # CMake trash
 out/
